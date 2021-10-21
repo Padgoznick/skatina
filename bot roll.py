@@ -31,6 +31,14 @@ HOW_GAY_IS_YOUR_MOM = 69
 GOODBYE_TEXT = "YOUR MOM IS SUPER GAY BYE!\n" * HOW_GAY_IS_YOUR_MOM
 NOT_A_NUMBER_TEXT = "ARE YOU GAY STUPID DUMB OR DUMB NIGGA WE SAID NUMBER NOT YOUR MOMS STUPID NICKNAME!!!!!!!!"
 
+def menu_help():
+    explanation = input(EXPLAIN_TEXT)
+    menu_start() if explanation == "yes" else print(AUTISM_TEXT)
+
+
+def menu_quit():
+    print(GOODBYE_TEXT)
+
 def menu_start():
     try:
         bet = int(input('what is your bet? '))
@@ -51,23 +59,15 @@ def menu_start():
         print(f'your roll is: {player_roll}') 
         if player_roll == 1:
             print(f'your roll was 1 sorry you lost: {bet} and bot won: {reward}')
-            input('press any key to exit: ')
+            ask_retry()
             break
         
         bot_roll=random.randint(1,player_roll)
         print(f'bot roll is: {bot_roll}')
         if bot_roll == 1:
             print(f'bot rolled 1 and lost you win {reward}!!!')
-            input('press any key to exit: ')
+            ask_retry()
             break
-
-def menu_help():
-    explanation = input(EXPLAIN_TEXT)
-    menu_start() if explanation == "yes" else print(AUTISM_TEXT)
-
-
-def menu_quit():
-    print(GOODBYE_TEXT)
 
 def menu(option):
     match option:
@@ -79,6 +79,10 @@ def menu(option):
             menu_quit()
         case _:
             menu(input(WELCOME_TEXT))
+
+def ask_retry():
+    again = input('bitch wanna go again? type "yes" to restart: ')
+    menu_start() if again.lower() == "yes" else menu_quit()
 
 def main():
     option = input(WELCOME_TEXT)
